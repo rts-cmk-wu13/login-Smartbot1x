@@ -1,0 +1,101 @@
+.Signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fff;
+  position: relative;
+}
+
+form {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.input-container {
+  margin-bottom: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  width: 305px;
+  height: 58px;
+  border-radius: 24px;
+  background: #fff;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s ease;
+}
+
+input:invalid {
+  background-color: rgb(160, 40, 40);
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0px 4px 6px 0px rgba(0, 123, 255, 0.3);
+}
+
+::placeholder {
+  color: #2c2929;
+  text-align: center;
+  font-family: "DM Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-family: "DM Sans";
+  margin: 5px 0 0 0;
+  text-align: center;
+  min-height: 16px;
+}
+
+.Signup-container .back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.2em;
+  cursor: pointer;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+/* .first_button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 20px;
+  font-family: "DM Sans";
+  font-weight: 400;
+  cursor: pointer;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 58px;
+  width: 305px;
+  justify-content: center;
+} */
+
+.first_button:hover {
+  background-color: #0056b3;
+}
