@@ -23,7 +23,7 @@ export default function Login() {
           className="input-field"
         />
         <input type="password" placeholder="Password" className="input-field" />
-        <button className="login-btn">
+        <button className="login-btn flex justify-center items-center  bg-white hover:bg-gray-300 hover:text-black text-black font-bold py-2 px-4 rounded">
           Login{" "}
           <span>
             <IoArrowForward />

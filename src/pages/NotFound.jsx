@@ -89,7 +89,11 @@ export default function NotFound() {
           </div>
         </div>
       </div>
-      <Link to="/">Gå til forsiden</Link>
+      <button className="text-4xl color bg-sky-500 hover:bg-sky-700 transition ease-in-out duration-300 p-4 rounded-lg">
+        <Link className="text-blue-950" to="/">
+          Gå til forsiden
+        </Link>
+      </button>
     </>
   );
 }
