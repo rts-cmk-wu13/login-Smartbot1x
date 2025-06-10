@@ -10,8 +10,8 @@ function App() {
         <Outlet />
       </main>
 
-      <footer>
-        <small>&copy; {new Date().getFullYear()} My App.</small>
+      <footer className="">
+        <small className="">&copy; {new Date().getFullYear()} My App.</small>
       </footer>
     </>
   );

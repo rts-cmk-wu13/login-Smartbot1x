@@ -3,12 +3,31 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import "../style/signup.css";
 import Signupbttn from "../components/Signupbttn";
 import Logo from "/assets/emojione_bird.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { valider } from "../components/validation";
 import { FcGoogle } from "react-icons/fc";
+import { URL, apiKey } from "../api/authconfig";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(URL, apiKey);
 
 export default function Signup() {
   const [errors, setErrors] = useState({});
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const handleSignupClick = (e) => {
     e.preventDefault();
@@ -23,6 +42,25 @@ export default function Signup() {
       console.log("Form submitted successfully");
     }
   };
+
+  const signUp = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+    });
+  };
+
+  const signOut = async () => {
+    await supabase.auth.signOut();
+  };
+
+  if (session) {
+    return (
+      <div className="Signup-container">
+        <p>Signed in as {session.user.email}</p>
+        <button onClick={signOut}>Sign out</button>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -77,14 +115,15 @@ export default function Signup() {
             </div>
           </form>
         </article>
-        <div className="Button__Wrapper flex flex-col justify-center items-center gap-4">
+        <div className="Button__Wrapper flex flex-col justify-center items-center gap-25">
           <Signupbttn onClick={handleSignupClick} />
 
           <button
             type="button"
-            class="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
+            className="w-full block bg-white hover:bg-gray-100 focus:bg-gray-100 text-gray-900 font-semibold rounded-lg px-4 py-3 border border-gray-300"
+            onClick={signUp}
           >
-            <p class="flex items-center justify-center gap-2 rounded-3xl">
+            <p className="flex items-center justify-center gap-2 rounded-3xl">
               Log in with{" "}
               <span>
                 <FcGoogle />
